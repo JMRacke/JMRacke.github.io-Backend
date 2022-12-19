@@ -3,12 +3,11 @@ const express = require("express");
 const router = express.Router();
 const needle = require("needle");
 const apicache = require("apicache");
-const yelp = require("yelp-fusion");
 
 // Env vars
 
 const API_KEY_VALUE = process.env.YELP_KEY_VALUE;
-const client = yelp.client(API_KEY_VALUE);
+
 // init cache
 let cache = apicache.middleware;
 
