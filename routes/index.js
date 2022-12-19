@@ -28,7 +28,11 @@ router.get("/", cache("2 minutes"), async (req, res) => {
     };
     const apiRes = await needle("get", `${API_BASE_URL}?${params}`, header);
     const data = apiRes.body;
-
+    res.header({
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
     res.status(200).json(data);
   } catch (error) {
     res.status(500).json(error);
