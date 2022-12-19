@@ -22,6 +22,6 @@ app.use("/api", require("./routes/yelp"));
 app.use(express.static("public"));
 
 // enable cors
-app.use(cors);
+app.use(cors());
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
