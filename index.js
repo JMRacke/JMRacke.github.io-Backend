@@ -16,7 +16,7 @@ app.use(limiter);
 app.set("trust proxy", 1);
 
 // Routes
-app.use("/api", require("./routes/yelp.js"));
+app.use("/api", require("./routes/yelp"));
 
 // enable cors
 app.use(cors);
