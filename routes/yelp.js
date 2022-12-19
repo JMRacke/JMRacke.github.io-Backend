@@ -5,7 +5,8 @@ const needle = require("needle");
 const apicache = require("apicache");
 
 // Env vars
-
+const API_BASE_URL = process.env.YELP_API_URL;
+const API_KEY_NAME = process.env.YELP_KEY_NAME;
 const API_KEY_VALUE = process.env.YELP_KEY_VALUE;
 
 // init cache
