@@ -41,29 +41,29 @@ function getWeatherByLocation({ coords: { latitude: lat, longitude: lon } }) {
       console.log(weatherInfo);
     });
 }
-const searchTerm = "The Matrix";
-const promise1 = fetch(
-  `http://www.omdbapi.com/?apikey=${api_key}&t=${searchTerm}`
-);
-const promise2 = fetch(
-  `http://www.omdbapi.com/?apikey=${api_key}&t=${searchTerm}`
-);
-const promise3 = fetch(
-  `http://www.omdbapi.com/?apikey=${api_key}&t=${searchTerm}`
-);
+// const searchTerm = "The Matrix";
+// const promise1 = fetch(
+//   `http://www.omdbapi.com/?apikey=${api_key}&t=${searchTerm}`
+// );
+// const promise2 = fetch(
+//   `http://www.omdbapi.com/?apikey=${api_key}&t=${searchTerm}`
+// );
+// const promise3 = fetch(
+//   `http://www.omdbapi.com/?apikey=${api_key}&t=${searchTerm}`
+// );
 
-Promise.all([promise1, promise2, promise3])
-  .then(async ([promise1, promise2, promise3]) => {
-    const p1 = await promise1.json();
-    const p2 = await promise2.json();
-    const p3 = await promise3.json();
-    return [p1, p2, p3];
-  })
-  .then(([promise1, promise2, promise3]) => {
-    console.log(promise1);
-    console.log(promise2);
-    console.log(promise3);
-  });
+// Promise.all([promise1, promise2, promise3])
+//   .then(async ([promise1, promise2, promise3]) => {
+//     const p1 = await promise1.json();
+//     const p2 = await promise2.json();
+//     const p3 = await promise3.json();
+//     return [p1, p2, p3];
+//   })
+//   .then(([promise1, promise2, promise3]) => {
+//     console.log(promise1);
+//     console.log(promise2);
+//     console.log(promise3);
+//   });
 
 function getMovies(searchTerm) {
   // go to the movies api using the search term
@@ -71,19 +71,8 @@ function getMovies(searchTerm) {
   // test API url to understand the shape of the json returned
 
   let apiURL = `https://sde-final-backend.herokuapp.com/api?location=breakfast&latitude=39.5500194&longitude=-123.438353&radius=40000&sort_by=best_match&limit=20 `;
-  fetch(apiURL, {
-    headers: {
-      "Access-Control-Allow-Origin": "http://127.0.0.1:5500",
-    },
-  })
-    .then((response) => {
-      response.setHeader({
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-        },
-      });
-      return response.json();
-    })
+  fetch(apiURL)
+    .then((response) => response.json())
     .then((json_payload) => {
       console.log(json_payload);
       // if (json_payload.Error) {
