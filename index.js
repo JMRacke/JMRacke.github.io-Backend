@@ -18,6 +18,9 @@ app.set("trust proxy", 1);
 // Routes
 app.use("/api", require("./routes/yelp"));
 
+// Set static folder
+app.use(express.static("public"));
+
 // enable cors
 app.use(cors);
 
