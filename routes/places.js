@@ -4,26 +4,27 @@ const router = express.Router();
 const needle = require("needle");
 const apicache = require("apicache");
 
-// Env vars
+// Environment Variables from .env on herokuapp
 const API_BASE_URL = process.env.PLACE_API_URL;
 const API_KEY_NAME = process.env.PLACE_KEY_NAME;
 const API_KEY_VALUE = process.env.PLACE_KEY_VALUE;
 
-// init cache
+// Initializes a cache so if the same GET is sent within a 30 minute period, it will use the cached results. Since we are making a lot of API calls from the same location, this cuts down on the number of calls to the actual API
 let cache = apicache.middleware;
 
-router.get("/", cache("2 minutes"), async (req, res) => {
+router.get("/", cache("30 minutes"), async (req, res) => {
   try {
-    const urlReq = url.parse(req.url, true).query;
-
+    // Format parameters from url as well as the api key
     const params = new URLSearchParams({
       [API_KEY_NAME]: API_KEY_VALUE,
       ...url.parse(req.url, true).query,
     });
     console.log(params);
 
+    // Performs the real API call to the Yelp server with the API key in the header
     const apiRes = await needle("get", `${API_BASE_URL}?${params}`);
 
+    // Returns the body of the response and a successful status code to originator
     const data = apiRes.body;
     res.status(200).json(data);
   } catch (error) {
