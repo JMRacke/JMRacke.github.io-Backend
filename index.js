@@ -20,7 +20,8 @@ app.set("trust proxy", 1);
 
 // Routes
 app.use("/api", require("./routes/yelp"));
-
+app.use("/places", require("./routes/places"));
+app.use("/id", require("./routes/id"));
 // Set static folder
 app.use(express.static("public"));
 
