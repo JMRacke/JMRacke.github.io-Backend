@@ -16,7 +16,7 @@ router.get("/", cache("30 minutes"), async (req, res) => {
   try {
     // Format parameters from url
     console.log("HERES THE PAYLOAD");
-    console.log(JSON.stringify(req));
+    console.log(req);
     console.log("--------------------------------------------");
     //console.log(`HERES THE PAYLOAD!!! ${paramstring}`);
     const params = new URLSearchParams({
