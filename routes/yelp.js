@@ -15,7 +15,8 @@ let cache = apicache.middleware;
 router.get("/", cache("30 minutes"), async (req, res) => {
   try {
     // Format parameters from url
-    console.log(`HERES THE PAYLOAD!!! ${JSON.stringify(req)}`);
+    const paramstring = JSON.stringify(req);
+    console.log(`HERES THE PAYLOAD!!! ${paramstring}`);
     const params = new URLSearchParams({
       ...url.parse(req.url, true).query,
     });
